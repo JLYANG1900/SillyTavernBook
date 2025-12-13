@@ -265,7 +265,7 @@
             background: transparent !important; 
             transition: padding 0.4s ease;
             
-            /* --- 新增：垂直滑动锁定与防摇晃逻辑 --- */
+            /* --- 垂直滑动锁定与防摇晃逻辑 --- */
             overflow-y: auto;         /* 允许垂直滚动 */
             overflow-x: hidden;       /* 强制禁止水平滚动 */
             touch-action: pan-y;      /* 关键：告诉浏览器只处理垂直滑动手势，忽略水平拖拽 */
@@ -309,6 +309,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             display: flex; align-items: center; gap: 8px;
+            position: relative; /* 为内部元素提供定位上下文 */
         }
         .char-name-tag::before {
             content: ''; display: inline-block; width: 6px; height: 6px;
@@ -318,6 +319,8 @@
         .message-user .char-name-tag {
             color: var(--moss-green);
             align-self: flex-end;
+            /* 用户侧保持反向顺序 */
+            flex-direction: row-reverse;
         }
         .message-user .char-name-tag::before { background: var(--moss-green); }
 
@@ -369,16 +372,19 @@
             margin: 10px 0;
         }
 
-        /* 悬停显示书签操作 */
+        /* --- 新版书签操作栏 (位置调整至名字左侧) --- */
         .msg-action-bar {
-            position: absolute;
-            right: -30px; top: 0;
-            opacity: 0; transition: opacity 0.3s;
-            display: flex; flex-direction: column; gap: 5px;
+            display: inline-flex;
+            align-items: center;
+            opacity: 0; /* 默认隐藏，保持PC端美学 */
+            transition: opacity 0.3s;
+            margin: 0 10px; /* 给图标和名字之间留出空隙 */
         }
+        
         .message-row:hover .msg-action-bar { opacity: 1; }
+
         .bm-icon {
-            color: var(--stone-gray); cursor: pointer; font-size: 14px;
+            color: var(--stone-gray); cursor: pointer; font-size: 14px; padding: 5px; /* 增加点击区域 */
         }
         .bm-icon.active { color: var(--cinnabar-red); }
         .bm-icon:hover { color: var(--ink-black); }
@@ -477,6 +483,9 @@
             .chapter-header { padding: 20px; }
             .current-chat-title { font-size: 18px; }
             .zen-panel { width: 95%; height: 80%; }
+            
+            /* --- 移动端特有：书签图标始终可见 --- */
+            .msg-action-bar { opacity: 1; }
         }
     </style>
 </head>
@@ -687,7 +696,8 @@
             if (e.target.closest('.menu-btn') || 
                 e.target.closest('.zen-panel') || 
                 e.target.closest('.page-btn') ||
-                e.target.closest('.page-indicator')) {
+                e.target.closest('.page-indicator') ||
+                e.target.closest('.bm-icon')) { // 排除点击书签图标
                 return;
             }
 
@@ -900,13 +910,17 @@
             row.className = `message-row ${isUser ? 'message-user' : 'message-char'}`;
             row.id = `msg-row-${index}`;
             
+            // --- 结构调整：将 msg-action-bar 移入 char-name-tag ---
+            // 这样在移动端更易触控，且位于名字左侧（或右侧，视 flex 排版而定）
             row.innerHTML = `
-                <div class="char-name-tag">${name}</div>
-                <div class="bubble-content">
-                    <div class="bubble">${htmlContent}</div>
+                <div class="char-name-tag">
                     <div class="msg-action-bar">
                         <i class="fa-solid fa-bookmark bm-icon ${activeClass}" onclick="toggleBookmark(${index})"></i>
                     </div>
+                    ${name}
+                </div>
+                <div class="bubble-content">
+                    <div class="bubble">${htmlContent}</div>
                 </div>
             `;
             chatContainer.appendChild(row);
