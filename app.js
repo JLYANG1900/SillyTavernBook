@@ -322,6 +322,20 @@ const App = {
             toast.textContent = message;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 2500);
+        },
+
+        // Toggle collapsible panels (story, memory, bg-info)
+        toggleCollapsiblePanel(panelId) {
+            const content = document.getElementById(`${panelId}-content`);
+            const panel = content?.closest('.collapsible-panel');
+            const icon = panel?.querySelector('.panel-toggle-icon');
+
+            if (content) {
+                content.classList.toggle('collapsed');
+            }
+            if (icon) {
+                icon.classList.toggle('rotated');
+            }
         }
     },
 

@@ -2631,3 +2631,81 @@ body.dark-mode .list-item:hover {
         padding-bottom: env(safe-area-inset-bottom);
     }
 }
+
+/* ===== Collapsible Panels ===== */
+.collapsible-panel {
+    margin-bottom: 8px;
+}
+
+.collapsible-panel .panel-header.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.collapsible-panel .panel-header.clickable:hover {
+    opacity: 0.85;
+}
+
+.collapsible-panel .panel-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel-toggle-icon {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+    color: var(--text-muted);
+}
+
+.panel-toggle-icon.rotated {
+    transform: rotate(90deg);
+}
+
+.collapsible-panel .panel-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+    max-height: 500px;
+    opacity: 1;
+}
+
+.collapsible-panel .panel-content.collapsed {
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* ===== Mobile Works Panel Layout Fix ===== */
+@media (max-width: 768px) {
+
+    /* Force Works layout to be vertical on mobile */
+    .works-layout {
+        flex-direction: column !important;
+        padding: 12px;
+        gap: 16px;
+    }
+
+    /* Full width panels */
+    .works-layout .results-container,
+    .works-layout .raw-output-container {
+        width: 100%;
+        flex: none;
+    }
+
+    /* Result sections stack properly */
+    .result-section {
+        margin-bottom: 12px;
+    }
+
+    .results-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .result-label-row {
+        flex-wrap: wrap;
+    }
+}

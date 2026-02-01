@@ -173,61 +173,76 @@
                         <!-- Left: Story & Memory & Background Info -->
                         <div class="left-sidebar-panel">
                             <!-- Story Selector Panel -->
-                            <div class="story-panel">
-                                <div class="panel-header">
-                                    <h3><i class="fa-solid fa-book"></i> 故事</h3>
-                                    <button class="btn-text" onclick="App.story.openModal()">
+                            <div class="story-panel collapsible-panel">
+                                <div class="panel-header clickable"
+                                    onclick="App.ui.toggleCollapsiblePanel('story-panel')">
+                                    <h3>
+                                        <i class="fa-solid fa-chevron-right panel-toggle-icon"></i>
+                                        <i class="fa-solid fa-book"></i> 故事
+                                    </h3>
+                                    <button class="btn-text" onclick="event.stopPropagation(); App.story.openModal()">
                                         + 添加更多
                                     </button>
                                 </div>
-                                <div class="story-list" id="story-list">
-                                    <!-- Story items will be rendered here -->
-                                </div>
-                                <div class="empty-state" id="no-story-hint">
-                                    <i class="fa-solid fa-book"></i>
-                                    <p>添加故事来分类你的创作记忆</p>
+                                <div class="panel-content collapsed" id="story-panel-content">
+                                    <div class="story-list" id="story-list">
+                                        <!-- Story items will be rendered here -->
+                                    </div>
+                                    <div class="empty-state" id="no-story-hint">
+                                        <i class="fa-solid fa-book"></i>
+                                        <p>添加故事来分类你的创作记忆</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="memory-preview-panel">
-                                <div class="panel-header">
-                                    <h3><i class="fa-solid fa-bookmark"></i> 已选择的记忆 (<span id="memory-count">0</span>)
+                            <div class="memory-preview-panel collapsible-panel">
+                                <div class="panel-header clickable"
+                                    onclick="App.ui.toggleCollapsiblePanel('memory-panel')">
+                                    <h3>
+                                        <i class="fa-solid fa-chevron-right panel-toggle-icon"></i>
+                                        <i class="fa-solid fa-bookmark"></i> 已选择的记忆 (<span id="memory-count">0</span>)
                                     </h3>
-                                    <button class="btn-text" onclick="App.ui.switchTab('reader')">
+                                    <button class="btn-text"
+                                        onclick="event.stopPropagation(); App.ui.switchTab('reader')">
                                         + 添加更多
                                     </button>
                                 </div>
+                                <div class="panel-content collapsed" id="memory-panel-content">
+                                    <div class="memory-list-compact" id="memory-preview-list">
+                                        <!-- Memory cards will be rendered here -->
+                                    </div>
 
-                                <div class="memory-list-compact" id="memory-preview-list">
-                                    <!-- Memory cards will be rendered here -->
-                                </div>
-
-                                <div class="empty-state" id="no-memory-hint">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                    <p>请先在阅读器中选择记忆</p>
-                                    <button class="action-btn" onclick="App.ui.switchTab('reader')">
-                                        前往阅读器
-                                    </button>
+                                    <div class="empty-state" id="no-memory-hint">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <p>请先在阅读器中选择记忆</p>
+                                        <button class="action-btn" onclick="App.ui.switchTab('reader')">
+                                            前往阅读器
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Background Info Panel -->
-                            <div class="background-info-panel">
-                                <div class="panel-header">
-                                    <h3><i class="fa-solid fa-scroll"></i> 补充背景信息 (<span id="bg-info-count">0</span>)
+                            <div class="background-info-panel collapsible-panel">
+                                <div class="panel-header clickable"
+                                    onclick="App.ui.toggleCollapsiblePanel('bg-info-panel')">
+                                    <h3>
+                                        <i class="fa-solid fa-chevron-right panel-toggle-icon"></i>
+                                        <i class="fa-solid fa-scroll"></i> 补充背景信息 (<span id="bg-info-count">0</span>)
                                     </h3>
-                                    <button class="btn-text" onclick="App.bgInfo.openModal()">
+                                    <button class="btn-text" onclick="event.stopPropagation(); App.bgInfo.openModal()">
                                         + 添加更多
                                     </button>
                                 </div>
+                                <div class="panel-content collapsed" id="bg-info-panel-content">
+                                    <div class="bg-info-list" id="bg-info-list">
+                                        <!-- Background info items will be rendered here -->
+                                    </div>
 
-                                <div class="bg-info-list" id="bg-info-list">
-                                    <!-- Background info items will be rendered here -->
-                                </div>
-
-                                <div class="empty-state" id="no-bg-info-hint">
-                                    <i class="fa-solid fa-scroll"></i>
-                                    <p>添加角色人设、世界观等背景信息</p>
+                                    <div class="empty-state" id="no-bg-info-hint">
+                                        <i class="fa-solid fa-scroll"></i>
+                                        <p>添加角色人设、世界观等背景信息</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
