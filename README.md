@@ -1,11 +1,11 @@
-# Music Creator Cloud 🎵
+# SillyTavern Music Book 🎵
 
 > **让角色成为你的音乐制作人 — 云端版**  
 > *AI-powered music creation from your roleplay memories*
 
-Music Creator Cloud 是一个云端 Web 应用，将 SillyTavern 聊天记录转化为 AI 音乐创作灵感。导入对话、标记记忆、生成专属歌曲创作笔记，直接用于 Suno / Udio 等 AI 音乐平台。
+SillyTavern Music Book 是一个云端 Web 应用，将 SillyTavern 聊天记录转化为 AI 音乐创作灵感。导入对话、标记记忆、生成专属歌曲创作笔记，直接用于 Suno / Udio 等 AI 音乐平台。
 
-🔗 **在线访问**: [https://jlyang1900.github.io/SillyTavernBook/](https://jlyang1900.github.io/SillyTavernBook/)
+🔗 **在线访问**: [https://jlyang1900.github.io/SillyTavernMusicBook/](https://jlyang1900.github.io/SillyTavernMusicBook/)
 
 ## ✨ 功能特色
 
@@ -100,4 +100,4 @@ The instrumentation features Piano playing gentle, flowing arpeggios...
 
 ---
 
-*Music Creator Cloud - Based on ST_Music by JLYANG1900*
+*SillyTavern Music Book - Based on ST_Music by JLYANG1900*
